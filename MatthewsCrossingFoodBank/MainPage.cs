@@ -11,6 +11,9 @@ using System.Text.RegularExpressions;
 using System.Net.Mail;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace MatthewsCrossingFoodBank
 {
@@ -85,13 +88,14 @@ namespace MatthewsCrossingFoodBank
                 {
                     progressBarEntries.Increment(1);
                     
-                    string stmpServer = "smtp.gmail.com";
-                    string fromEmail = "opportunityhackpaypal@gmail.com";
+                    string stmpServer = "smtp.bizsiteservice.com";
+                    string fromEmail = "test1@matthewscrossing.org";
                     string fromPassword = "appleorange123";
+                    int port = 587;
 
                     string subject = "Thank you from Matthew's Crossing Food Bank";
 
-                    string toEmail = "opportunityhackpaypal@gmail.com";
+                    string[] toEmail = { "opportunityhackpaypal@gmail.com" , "whwaldie@asu.edu", "siddhantkanwar14@gmail.com"};
 
                     string firstName = "";
                     string lastName = "";
@@ -341,16 +345,19 @@ namespace MatthewsCrossingFoodBank
                         SmtpClient SmtpServer = new SmtpClient(stmpServer);
 
                         mail.From = new MailAddress(fromEmail);
-                        mail.To.Add(toEmail);
+                        mail.To.Add(toEmail[currentEntry % 3]);
                         mail.Subject = subject;
                         SmtpServer.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
                         mail.Body = htmlString;
                         mail.IsBodyHtml = true;
 
-                        SmtpServer.Port = 587;
+                        SmtpServer.Port = port;
                         SmtpServer.Credentials = new System.Net.NetworkCredential(fromEmail, fromPassword);
-                        SmtpServer.EnableSsl = true;
+                        //SmtpServer.EnableSsl = true;
 
+                        ServicePointManager.ServerCertificateValidationCallback = delegate (Object s, X509Certificate certificate, X509Chain chain,
+                           SslPolicyErrors sslPolicyErrors)
+                        { return true; };
                         SmtpServer.SendMailAsync(mail);
                     }
                     else

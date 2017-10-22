@@ -50,6 +50,7 @@
             this.colSalutation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.progressBarEntries = new System.Windows.Forms.ProgressBar();
             this.lblLoadedInfo = new System.Windows.Forms.Label();
+            this.btnDataAnalytics = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntries)).BeginInit();
             this.SuspendLayout();
@@ -58,9 +59,9 @@
             // 
             this.btnProcess.BackColor = System.Drawing.Color.Lime;
             this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProcess.Location = new System.Drawing.Point(495, 540);
+            this.btnProcess.Location = new System.Drawing.Point(573, 540);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(75, 23);
+            this.btnProcess.Size = new System.Drawing.Size(84, 23);
             this.btnProcess.TabIndex = 0;
             this.btnProcess.Text = "Process";
             this.btnProcess.UseVisualStyleBackColor = false;
@@ -131,9 +132,9 @@
             // 
             this.btnDeleteEntry.BackColor = System.Drawing.Color.Tomato;
             this.btnDeleteEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteEntry.Location = new System.Drawing.Point(249, 540);
+            this.btnDeleteEntry.Location = new System.Drawing.Point(357, 540);
             this.btnDeleteEntry.Name = "btnDeleteEntry";
-            this.btnDeleteEntry.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteEntry.Size = new System.Drawing.Size(83, 23);
             this.btnDeleteEntry.TabIndex = 7;
             this.btnDeleteEntry.Text = "Delete Entry";
             this.btnDeleteEntry.UseVisualStyleBackColor = false;
@@ -214,12 +215,24 @@
             this.lblLoadedInfo.Size = new System.Drawing.Size(0, 13);
             this.lblLoadedInfo.TabIndex = 9;
             // 
+            // btnDataAnalytics
+            // 
+            this.btnDataAnalytics.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnDataAnalytics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDataAnalytics.Location = new System.Drawing.Point(150, 539);
+            this.btnDataAnalytics.Name = "btnDataAnalytics";
+            this.btnDataAnalytics.Size = new System.Drawing.Size(90, 23);
+            this.btnDataAnalytics.TabIndex = 10;
+            this.btnDataAnalytics.Text = "Data Analytics";
+            this.btnDataAnalytics.UseVisualStyleBackColor = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(767, 579);
+            this.Controls.Add(this.btnDataAnalytics);
             this.Controls.Add(this.lblLoadedInfo);
             this.Controls.Add(this.progressBarEntries);
             this.Controls.Add(this.btnDeleteEntry);
@@ -261,5 +274,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSalutation;
         private System.Windows.Forms.ProgressBar progressBarEntries;
         private System.Windows.Forms.Label lblLoadedInfo;
+        private System.Windows.Forms.Button btnDataAnalytics;
     }
 }
