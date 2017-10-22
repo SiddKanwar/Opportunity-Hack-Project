@@ -10,9 +10,15 @@ namespace MatthewsCrossingFoodBank
     {
         public string donationID;
 
+        public string isCompany;
+
         public string firstName;
 
         public string lastName;
+
+        public string email;
+
+        public string salutation;
 
         public string streetAddress;
 
@@ -24,6 +30,12 @@ namespace MatthewsCrossingFoodBank
 
         public string zipPostalCode;
 
-        public string email;
+        public string donationType;
+
+        public string donatedOn;
+
+        public string dollarAmount;
+
+        public string weight;
     }
 }
