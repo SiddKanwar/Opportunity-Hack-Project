@@ -16,3 +16,4 @@ C:\Users\Miguel\Documents\GitHub\Team12\MatthewsCrossingFoodBank\obj\Debug\Matth
 C:\Users\Miguel\Documents\GitHub\Team12\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.MainPage.resources
 C:\Users\Miguel\Documents\GitHub\Team12\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.Properties.Resources.resources
 C:\Users\Miguel\Documents\GitHub\Team12\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.csproj.GenerateResource.Cache
+C:\Users\Miguel\Documents\GitHub\Team12\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.DataAnalytics.resources
