@@ -15,6 +15,8 @@ namespace MatthewsCrossingFoodBank
 {
     public partial class MainPage : Form
     {
+        public static int currentEntry = 0;
+
         public MainPage()
         {
             InitializeComponent();
@@ -62,10 +64,16 @@ namespace MatthewsCrossingFoodBank
         {
             try
             {
-                int count = 0;
+                int totalEntries = dataGridViewEntries.Rows.Count;
+                currentEntry = 0;
+
+                // List of HTML strings that do not have email strings and need to be sent letters
+                List<string> listHTMLStrings = new List<string>();
 
                 foreach (DataGridViewRow row in dataGridViewEntries.Rows)
                 {
+                    progressBarEntries.Value = currentEntry / totalEntries;
+
                     string stmpServer = "smtp.gmail.com";
                     string fromEmail = "opportunityhackpaypal@gmail.com";
                     string fromPassword = "appleorange123";
@@ -79,6 +87,7 @@ namespace MatthewsCrossingFoodBank
                     string email = "";
                     string date = "";
                     string type = "";
+                    string donatedValue = "";
                     string address = "";
                     string apartment = "";
                     string city = "";
@@ -88,29 +97,57 @@ namespace MatthewsCrossingFoodBank
 
                     try
                     {
-                        firstName = row.Cells[0].Value.ToString();
-                        lastName = row.Cells[1].Value.ToString();
-                        email = row.Cells[2].Value.ToString();
-                        date = row.Cells[3].Value.ToString();
-                        type = row.Cells[4].Value.ToString();
-                        address = row.Cells[5].Value.ToString();
-                        apartment = row.Cells[6].Value.ToString();
-                        city = row.Cells[7].Value.ToString();
-                        state = row.Cells[8].Value.ToString();
-                        zipcode = row.Cells[9].Value.ToString();
-                        salutation = row.Cells[10].Value.ToString();
+                        if (row.Cells[0].Value != null)
+                            firstName = row.Cells[0].Value.ToString();
+
+                        if (row.Cells[1].Value != null)
+                            lastName = row.Cells[1].Value.ToString();
+
+                        if (row.Cells[2].Value != null)
+                            email = row.Cells[2].Value.ToString();
+
+                        if (row.Cells[3].Value != null)
+                            date = row.Cells[3].Value.ToString();
+
+                        if (row.Cells[4].Value != null)
+                            type = row.Cells[4].Value.ToString();
+
+                        if (row.Cells[5].Value != null)
+                            donatedValue = row.Cells[5].Value.ToString();
+
+                        if (row.Cells[6].Value != null)
+                            address = row.Cells[6].Value.ToString();
+
+                        if (row.Cells[7].Value != null)
+                            apartment = row.Cells[7].Value.ToString();
+
+                        if (row.Cells[8].Value != null)
+                            city = row.Cells[8].Value.ToString();
+
+                        if (row.Cells[9].Value != null)
+                            state = row.Cells[9].Value.ToString();
+
+                        if (row.Cells[10].Value != null)
+                            zipcode = row.Cells[10].Value.ToString();
+
+                        if (row.Cells[11].Value != null)
+                            salutation = row.Cells[11].Value.ToString();
                     }
                     catch (Exception recordException)
                     {
+                        Console.WriteLine("Error reading the entries");
                         continue;
                     }
 
-                    Console.WriteLine(firstName + lastName + email + date + type + address + apartment + city + state + zipcode + salutation);
+                    Console.WriteLine(firstName + lastName + email + date + type + donatedValue + address + apartment + city + state + zipcode + salutation);
+
+                    // Donor has email
+                    string htmlString;
 
                     if (type == "Food")
                     {
                         // Food donation
-                        string htmlString = getHTMLFoodDonation();
+                        htmlString = getHTMLFoodDonation();
 
                         htmlString = htmlString.Replace("«First_Name»", firstName);
                         htmlString = htmlString.Replace("«Last_Name»", lastName);
@@ -119,41 +156,55 @@ namespace MatthewsCrossingFoodBank
                         htmlString = htmlString.Replace("«CityTown»", city);
                         htmlString = htmlString.Replace("«StateProvince»", state);
                         htmlString = htmlString.Replace("«ZipPostal_Code»", zipcode);
-                        htmlString = htmlString.Replace("«Salutation_Greeting_Dear_So_and_So»:", address);
-                        htmlString = htmlString.Replace("«Weight_lbs»", );
+                        htmlString = htmlString.Replace("«Salutation_Greeting_Dear_So_and_So»:", salutation);
+                        htmlString = htmlString.Replace("«Weight_lbs»", donatedValue);
+                        htmlString = htmlString.Replace("«Donated_On»", date);
                     }
                     else
                     {
                         // Monetary donation
-                        string htmlString = getHTMLMonetaryDonation();
+                        htmlString = getHTMLMonetaryDonation();
 
-
+                        htmlString = htmlString.Replace("«First_Name»", firstName);
+                        htmlString = htmlString.Replace("«Last_Name»", lastName);
+                        htmlString = htmlString.Replace("«Street_Address»", address);
+                        htmlString = htmlString.Replace("«Apartment»", apartment);
+                        htmlString = htmlString.Replace("«CityTown»", city);
+                        htmlString = htmlString.Replace("«StateProvince»", state);
+                        htmlString = htmlString.Replace("«ZipPostal_Code»", zipcode);
+                        htmlString = htmlString.Replace("«Salutation_Greeting_Dear_So_and_So»:", salutation);
+                        htmlString = htmlString.Replace("«M_Amount»", donatedValue);
+                        htmlString = htmlString.Replace("«Donated_On»", date);
                     }
 
-                    MailMessage mail = new MailMessage();
-                    SmtpClient SmtpServer = new SmtpClient(stmpServer);
 
-                    mail.From = new MailAddress(fromEmail);
-                    mail.To.Add(toEmail);
-                    mail.Subject = subject;
-                    //string htmlString = getHTMLString();
-                    //mail.Body = htmlString;
+                    if (email != "")
+                    {
+                        MailMessage mail = new MailMessage();
+                        SmtpClient SmtpServer = new SmtpClient(stmpServer);
 
-                    mail.IsBodyHtml = true;
-                    //htmlBody = "";
-                    //mail.Body = htmlBody;
-                    
-                    //htmlString = htmlString.Replace("<<First_Name>>", actual);
-                    //htmlString = htmlString.Replace("<<Last_Name>>", actual);
-                    //htmlString = htmlString.Replace("<<Street_Address>>", actual);
+                        mail.From = new MailAddress(fromEmail);
+                        mail.To.Add(toEmail);
+                        mail.Subject = subject;
+                        SmtpServer.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
+                        mail.Body = htmlString;
+                        mail.IsBodyHtml = true;
 
-                    SmtpServer.Port = 587;
-                    SmtpServer.Credentials = new System.Net.NetworkCredential(fromEmail, fromPassword);
-                    SmtpServer.EnableSsl = true;
+                        SmtpServer.Port = 587;
+                        SmtpServer.Credentials = new System.Net.NetworkCredential(fromEmail, fromPassword);
+                        SmtpServer.EnableSsl = true;
 
-                    //SmtpServer.SendMailAsync(mail);
-                    count++;
+                        SmtpServer.SendMailAsync(mail);
+                    }
+                    else
+                    {
+                        listHTMLStrings.Add(htmlString);
+                    }
                 }
+
+                // Call method to transform html strings into document
+
+
 
                 MessageBox.Show("Messages sent successfully!");
             }
@@ -164,6 +215,24 @@ namespace MatthewsCrossingFoodBank
                 Console.WriteLine("Exception Message: " + ex.Message + "\n\n");
                 Console.WriteLine("Exception String: " + ex.ToString());
             }
+        }
+
+        private static void SendCompletedCallback(object sender, AsyncCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                Console.WriteLine("Send canceled.");
+            }
+            if (e.Error != null)
+            {
+                Console.WriteLine("Error " + e.Error.ToString());
+            }
+            else
+            {
+                Console.WriteLine("Message sent.");
+            }
+
+            currentEntry++;
         }
 
         public List<Donor> getDonors(String filename)
@@ -265,7 +334,7 @@ AZ 85225 ● (480) 857-2296 ● www.matthewscrossing.org</span></p><p dir=""ltr"
         <br>
         <p dir=""ltr"" style=""line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt; text-align: center;""><span style=""font-size: 11pt; font-family: Calibri; color: rgb(0, 0, 0); background-color: transparent; font-weight: 700; vertical-align: baseline; white-space: pre-wrap;"">WE JUST WANT TO THANK YOU.</span></p>
         <br>
-        <p dir=""ltr"" style=""line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt; text-align: justify;""><span style=""font-size: 11pt; font-family: Calibri; color: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; white-space: pre-wrap;"">Thank you for showing your commitment to fighting hunger in our community by sending your generous gift of $«M__Amount» received on «Donated_On».</span></p>
+        <p dir=""ltr"" style=""line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt; text-align: justify;""><span style=""font-size: 11pt; font-family: Calibri; color: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; white-space: pre-wrap;"">Thank you for showing your commitment to fighting hunger in our community by sending your generous gift of $«M_Amount» received on «Donated_On».</span></p>
         <br>
         <p dir=""ltr"" style=""line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;""><span style=""font-size: 11pt; font-family: Calibri; color: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; white-space: pre-wrap;"">We are absolutely thrilled that you chose to support Matthew’s Crossing. &nbsp;Because of your gift families will be able to feed their children. &nbsp;</span></p>
         <p dir=""ltr"" style=""line-height: 1.2; margin-top: 0pt; margin-bottom: 0pt;""><span style=""font-size: 11pt; font-family: Calibri; color: rgb(0, 0, 0); background-color: transparent; vertical-align: baseline; white-space: pre-wrap;"">We at Matthew’s Crossing continue to provide food assistance to individuals and families in need, specifically the working poor, children, seniors and individuals with disabilities on a fixed income, families in crisis and the homeless. </span></p>

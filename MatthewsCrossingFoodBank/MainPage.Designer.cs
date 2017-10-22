@@ -48,6 +48,7 @@
             this.colStateProvince = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colZipcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSalutation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.progressBarEntries = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntries)).BeginInit();
             this.SuspendLayout();
@@ -121,7 +122,7 @@
             this.colSalutation});
             this.dataGridViewEntries.Location = new System.Drawing.Point(83, 285);
             this.dataGridViewEntries.Name = "dataGridViewEntries";
-            this.dataGridViewEntries.Size = new System.Drawing.Size(644, 348);
+            this.dataGridViewEntries.Size = new System.Drawing.Size(644, 290);
             this.dataGridViewEntries.TabIndex = 6;
             this.dataGridViewEntries.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEntries_CellContentClick);
             // 
@@ -197,12 +198,20 @@
             this.colSalutation.HeaderText = "Salutation";
             this.colSalutation.Name = "colSalutation";
             // 
+            // progressBarEntries
+            // 
+            this.progressBarEntries.Location = new System.Drawing.Point(83, 595);
+            this.progressBarEntries.Name = "progressBarEntries";
+            this.progressBarEntries.Size = new System.Drawing.Size(644, 23);
+            this.progressBarEntries.TabIndex = 8;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(767, 710);
+            this.Controls.Add(this.progressBarEntries);
             this.Controls.Add(this.btnDeleteEntry);
             this.Controls.Add(this.dataGridViewEntries);
             this.Controls.Add(this.lblOpenFile);
@@ -240,5 +249,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colStateProvince;
         private System.Windows.Forms.DataGridViewTextBoxColumn colZipcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSalutation;
+        private System.Windows.Forms.ProgressBar progressBarEntries;
     }
 }
