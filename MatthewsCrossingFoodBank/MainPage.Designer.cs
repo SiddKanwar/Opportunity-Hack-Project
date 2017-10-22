@@ -51,6 +51,8 @@
             this.progressBarEntries = new System.Windows.Forms.ProgressBar();
             this.lblLoadedInfo = new System.Windows.Forms.Label();
             this.btnDataAnalytics = new System.Windows.Forms.Button();
+            this.txtKeywords = new System.Windows.Forms.TextBox();
+            this.lblKeywords = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntries)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +72,7 @@
             // txtFilenamePath
             // 
             this.txtFilenamePath.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFilenamePath.Location = new System.Drawing.Point(252, 190);
+            this.txtFilenamePath.Location = new System.Drawing.Point(80, 198);
             this.txtFilenamePath.Name = "txtFilenamePath";
             this.txtFilenamePath.ReadOnly = true;
             this.txtFilenamePath.Size = new System.Drawing.Size(257, 20);
@@ -79,7 +81,7 @@
             // btnOpenFile
             // 
             this.btnOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFile.Location = new System.Drawing.Point(515, 188);
+            this.btnOpenFile.Location = new System.Drawing.Point(343, 196);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(75, 23);
             this.btnOpenFile.TabIndex = 2;
@@ -100,7 +102,7 @@
             // lblOpenFile
             // 
             this.lblOpenFile.AutoSize = true;
-            this.lblOpenFile.Location = new System.Drawing.Point(252, 171);
+            this.lblOpenFile.Location = new System.Drawing.Point(80, 179);
             this.lblOpenFile.Name = "lblOpenFile";
             this.lblOpenFile.Size = new System.Drawing.Size(132, 13);
             this.lblOpenFile.TabIndex = 5;
@@ -225,6 +227,24 @@
             this.btnDataAnalytics.TabIndex = 10;
             this.btnDataAnalytics.Text = "Data Analytics";
             this.btnDataAnalytics.UseVisualStyleBackColor = false;
+            this.btnDataAnalytics.Click += new System.EventHandler(this.btnDataAnalytics_Click);
+            // 
+            // txtKeywords
+            // 
+            this.txtKeywords.Location = new System.Drawing.Point(469, 198);
+            this.txtKeywords.Name = "txtKeywords";
+            this.txtKeywords.Size = new System.Drawing.Size(258, 20);
+            this.txtKeywords.TabIndex = 11;
+            this.txtKeywords.Text = "frys\'s,safeway,walmart,winco,bashas,albertsons,starbucks";
+            // 
+            // lblKeywords
+            // 
+            this.lblKeywords.AutoSize = true;
+            this.lblKeywords.Location = new System.Drawing.Point(466, 179);
+            this.lblKeywords.Name = "lblKeywords";
+            this.lblKeywords.Size = new System.Drawing.Size(266, 13);
+            this.lblKeywords.TabIndex = 12;
+            this.lblKeywords.Text = "Enter business keywords to filter out comma separated:";
             // 
             // MainPage
             // 
@@ -232,6 +252,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(767, 579);
+            this.Controls.Add(this.lblKeywords);
+            this.Controls.Add(this.txtKeywords);
             this.Controls.Add(this.btnDataAnalytics);
             this.Controls.Add(this.lblLoadedInfo);
             this.Controls.Add(this.progressBarEntries);
@@ -243,7 +265,6 @@
             this.Controls.Add(this.txtFilenamePath);
             this.Controls.Add(this.btnProcess);
             this.Name = "MainPage";
-            this.Text = "Matthew\'s Crossing Food Bank";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntries)).EndInit();
             this.ResumeLayout(false);
@@ -275,5 +296,7 @@
         private System.Windows.Forms.ProgressBar progressBarEntries;
         private System.Windows.Forms.Label lblLoadedInfo;
         private System.Windows.Forms.Button btnDataAnalytics;
+        private System.Windows.Forms.TextBox txtKeywords;
+        private System.Windows.Forms.Label lblKeywords;
     }
 }

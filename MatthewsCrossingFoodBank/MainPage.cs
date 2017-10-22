@@ -20,6 +20,7 @@ namespace MatthewsCrossingFoodBank
     public partial class MainPage : Form
     {
         public static int currentEntry = 0;
+        List<string> _list;
 
         public MainPage()
         {
@@ -43,6 +44,8 @@ namespace MatthewsCrossingFoodBank
             // Populate the data grid view with the data from the CSV file
             foreach (Donor d in donors)
             {
+                if (d.firstName == "First Name" && d.lastName == "Last Name") continue;
+
                 String donatedValue;
 
                 if (d.donationType == "Food")
@@ -88,15 +91,6 @@ namespace MatthewsCrossingFoodBank
                 {
                     progressBarEntries.Increment(1);
                     
-                    string stmpServer = "smtp.bizsiteservice.com";
-                    string fromEmail = "test1@matthewscrossing.org";
-                    string fromPassword = "appleorange123";
-                    int port = 587;
-
-                    string subject = "Thank you from Matthew's Crossing Food Bank";
-
-                    string[] toEmail = { "opportunityhackpaypal@gmail.com" , "whwaldie@asu.edu", "siddhantkanwar14@gmail.com"};
-
                     string firstName = "";
                     string lastName = "";
                     string email = "";
@@ -155,7 +149,15 @@ namespace MatthewsCrossingFoodBank
                     }
 
                     if (email == "" && address == "") continue;
-                    Console.WriteLine("1:" + email + "2:" + address);
+
+                    string stmpServer = "smtp.gmail.com";
+                    string fromEmail = "matthewcrossingtest1@gmail.com";
+                    string fromPassword = "appleorange123";
+                    int port = 587;
+
+                    string subject = "Thank you from Matthew's Crossing Food Bank";
+
+                    string toEmail = email;
 
                     // Donor has email
                     string htmlString;
@@ -345,7 +347,7 @@ namespace MatthewsCrossingFoodBank
                         SmtpClient SmtpServer = new SmtpClient(stmpServer);
 
                         mail.From = new MailAddress(fromEmail);
-                        mail.To.Add(toEmail[currentEntry % 3]);
+                        mail.To.Add(toEmail);
                         mail.Subject = subject;
                         SmtpServer.SendCompleted += new SendCompletedEventHandler(SendCompletedCallback);
                         mail.Body = htmlString;
@@ -353,15 +355,15 @@ namespace MatthewsCrossingFoodBank
 
                         SmtpServer.Port = port;
                         SmtpServer.Credentials = new System.Net.NetworkCredential(fromEmail, fromPassword);
-                        //SmtpServer.EnableSsl = true;
+                        SmtpServer.EnableSsl = true;
 
-                        ServicePointManager.ServerCertificateValidationCallback = delegate (Object s, X509Certificate certificate, X509Chain chain,
-                           SslPolicyErrors sslPolicyErrors)
-                        { return true; };
                         SmtpServer.SendMailAsync(mail);
                     }
                     else
                     {
+                        // Only create HTML document for valid addresses
+                        if (address == "" || zipcode == "" || state == "" || city == "") continue;
+
                         listHTMLStrings.Add(htmlString);
                     }
                 }
@@ -399,6 +401,21 @@ namespace MatthewsCrossingFoodBank
             currentEntry++;
         }
 
+        public bool containsKeyword(string word)
+        {
+            string lower = word.ToLower();
+            // Filter out companies
+            string[] keywords = txtKeywords.Text.ToString().Split(',');
+
+            for (int i = 0; i < keywords.Length; i++)
+            {
+                if (lower.Contains(keywords[i].ToLower()))
+                    return true;
+            }
+
+            return false;
+        }
+
         public List<Donor> getDonors(String filename)
         {
             string path = @"" + filename;
@@ -411,6 +428,11 @@ namespace MatthewsCrossingFoodBank
             while ((line = sr.ReadLine()) != null)
             {
                 parsedLine = SplitCSV(line);
+
+                if (containsKeyword(parsedLine[2]) || containsKeyword(parsedLine[3]))
+                {
+                    continue;
+                }
 
                 if (parsedLine[1] != "1")
                 {
@@ -430,7 +452,7 @@ namespace MatthewsCrossingFoodBank
             temp.isCompany = donorArray[1].Replace("\"", "");
             temp.firstName = donorArray[2].Replace("\"", "");
             temp.lastName = donorArray[3].Replace("\"", "");
-            temp.email = "opportunityhackpaypal@gmail.com";
+            temp.email = donorArray[4].Replace("\"", "");
             temp.salutation = donorArray[5].Replace("\"", "");
             temp.streetAddress = donorArray[6].Replace("\"", "");
             temp.apartment = donorArray[7].Replace("\"", "");
@@ -474,6 +496,7 @@ namespace MatthewsCrossingFoodBank
 
         private void createHTML(List<string> letters)
         {
+            if (letters.Count <= 0) return;
 
             //create new SaveFileDialog instance
             SaveFileDialog sfd = new SaveFileDialog();
@@ -483,15 +506,10 @@ namespace MatthewsCrossingFoodBank
             //display dialog and see if OK button was pressed
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-
                 using (StreamWriter sw = File.CreateText(sfd.FileName))
                 {
-
-
                     foreach (String str in letters)
-                    {
                         sw.Write(str);
-                    }
                 }
 
             }
@@ -525,6 +543,17 @@ namespace MatthewsCrossingFoodBank
         private void dataGridViewEntries_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            
+        }
+
+        private void btnDataAnalytics_Click(object sender, EventArgs e)
+        {
+            string filename = txtFilenamePath.Text;
+
+            List<Donor> donors = getDonors(filename);
+
+            DataAnalytics dataAnalytics = new DataAnalytics(donors);
+            dataAnalytics.ShowDialog();
         }
     }
 }
