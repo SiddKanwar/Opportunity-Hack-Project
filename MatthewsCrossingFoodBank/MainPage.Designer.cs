@@ -49,6 +49,8 @@
             this.colZipcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSalutation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.progressBarEntries = new System.Windows.Forms.ProgressBar();
+            this.lblLoadedInfo = new System.Windows.Forms.Label();
+            this.btnDataAnalytics = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEntries)).BeginInit();
             this.SuspendLayout();
@@ -57,9 +59,9 @@
             // 
             this.btnProcess.BackColor = System.Drawing.Color.Lime;
             this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProcess.Location = new System.Drawing.Point(464, 656);
+            this.btnProcess.Location = new System.Drawing.Point(573, 540);
             this.btnProcess.Name = "btnProcess";
-            this.btnProcess.Size = new System.Drawing.Size(75, 23);
+            this.btnProcess.Size = new System.Drawing.Size(84, 23);
             this.btnProcess.TabIndex = 0;
             this.btnProcess.Text = "Process";
             this.btnProcess.UseVisualStyleBackColor = false;
@@ -68,7 +70,7 @@
             // txtFilenamePath
             // 
             this.txtFilenamePath.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFilenamePath.Location = new System.Drawing.Point(201, 225);
+            this.txtFilenamePath.Location = new System.Drawing.Point(252, 190);
             this.txtFilenamePath.Name = "txtFilenamePath";
             this.txtFilenamePath.ReadOnly = true;
             this.txtFilenamePath.Size = new System.Drawing.Size(257, 20);
@@ -77,7 +79,7 @@
             // btnOpenFile
             // 
             this.btnOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenFile.Location = new System.Drawing.Point(464, 223);
+            this.btnOpenFile.Location = new System.Drawing.Point(515, 188);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(75, 23);
             this.btnOpenFile.TabIndex = 2;
@@ -89,16 +91,16 @@
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(109, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(218, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(582, 189);
+            this.pictureBox1.Size = new System.Drawing.Size(381, 128);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // lblOpenFile
             // 
             this.lblOpenFile.AutoSize = true;
-            this.lblOpenFile.Location = new System.Drawing.Point(201, 206);
+            this.lblOpenFile.Location = new System.Drawing.Point(252, 171);
             this.lblOpenFile.Name = "lblOpenFile";
             this.lblOpenFile.Size = new System.Drawing.Size(132, 13);
             this.lblOpenFile.TabIndex = 5;
@@ -120,9 +122,9 @@
             this.colStateProvince,
             this.colZipcode,
             this.colSalutation});
-            this.dataGridViewEntries.Location = new System.Drawing.Point(83, 285);
+            this.dataGridViewEntries.Location = new System.Drawing.Point(83, 257);
             this.dataGridViewEntries.Name = "dataGridViewEntries";
-            this.dataGridViewEntries.Size = new System.Drawing.Size(644, 290);
+            this.dataGridViewEntries.Size = new System.Drawing.Size(644, 239);
             this.dataGridViewEntries.TabIndex = 6;
             this.dataGridViewEntries.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEntries_CellContentClick);
             // 
@@ -130,9 +132,9 @@
             // 
             this.btnDeleteEntry.BackColor = System.Drawing.Color.Tomato;
             this.btnDeleteEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteEntry.Location = new System.Drawing.Point(218, 656);
+            this.btnDeleteEntry.Location = new System.Drawing.Point(357, 540);
             this.btnDeleteEntry.Name = "btnDeleteEntry";
-            this.btnDeleteEntry.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteEntry.Size = new System.Drawing.Size(83, 23);
             this.btnDeleteEntry.TabIndex = 7;
             this.btnDeleteEntry.Text = "Delete Entry";
             this.btnDeleteEntry.UseVisualStyleBackColor = false;
@@ -200,17 +202,38 @@
             // 
             // progressBarEntries
             // 
-            this.progressBarEntries.Location = new System.Drawing.Point(83, 595);
+            this.progressBarEntries.Location = new System.Drawing.Point(83, 502);
             this.progressBarEntries.Name = "progressBarEntries";
             this.progressBarEntries.Size = new System.Drawing.Size(644, 23);
             this.progressBarEntries.TabIndex = 8;
+            // 
+            // lblLoadedInfo
+            // 
+            this.lblLoadedInfo.AutoSize = true;
+            this.lblLoadedInfo.Location = new System.Drawing.Point(252, 223);
+            this.lblLoadedInfo.Name = "lblLoadedInfo";
+            this.lblLoadedInfo.Size = new System.Drawing.Size(0, 13);
+            this.lblLoadedInfo.TabIndex = 9;
+            // 
+            // btnDataAnalytics
+            // 
+            this.btnDataAnalytics.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnDataAnalytics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDataAnalytics.Location = new System.Drawing.Point(150, 539);
+            this.btnDataAnalytics.Name = "btnDataAnalytics";
+            this.btnDataAnalytics.Size = new System.Drawing.Size(90, 23);
+            this.btnDataAnalytics.TabIndex = 10;
+            this.btnDataAnalytics.Text = "Data Analytics";
+            this.btnDataAnalytics.UseVisualStyleBackColor = false;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(767, 710);
+            this.ClientSize = new System.Drawing.Size(767, 579);
+            this.Controls.Add(this.btnDataAnalytics);
+            this.Controls.Add(this.lblLoadedInfo);
             this.Controls.Add(this.progressBarEntries);
             this.Controls.Add(this.btnDeleteEntry);
             this.Controls.Add(this.dataGridViewEntries);
@@ -250,5 +273,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colZipcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSalutation;
         private System.Windows.Forms.ProgressBar progressBarEntries;
+        private System.Windows.Forms.Label lblLoadedInfo;
+        private System.Windows.Forms.Button btnDataAnalytics;
     }
 }
