@@ -1,0 +1,9 @@
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\bin\Debug\MatthewsCrossingFoodBank.exe.config
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\bin\Debug\MatthewsCrossingFoodBank.exe
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\bin\Debug\MatthewsCrossingFoodBank.pdb
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.MainPage.resources
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.Properties.Resources.resources
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.csproj.GenerateResource.Cache
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.exe
+C:\Users\Miguel\Documents\Visual Studio 2015\Projects\MatthewsCrossingFoodBank\MatthewsCrossingFoodBank\obj\Debug\MatthewsCrossingFoodBank.pdb
