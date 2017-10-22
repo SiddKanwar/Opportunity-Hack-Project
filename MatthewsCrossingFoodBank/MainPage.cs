@@ -115,7 +115,12 @@ namespace MatthewsCrossingFoodBank
                         htmlString = htmlString.Replace("«First_Name»", firstName);
                         htmlString = htmlString.Replace("«Last_Name»", lastName);
                         htmlString = htmlString.Replace("«Street_Address»", address);
-                        htmlString = htmlString.Replace("«Street_Address»", address);
+                        htmlString = htmlString.Replace("«Apartment»", apartment);
+                        htmlString = htmlString.Replace("«CityTown»", city);
+                        htmlString = htmlString.Replace("«StateProvince»", state);
+                        htmlString = htmlString.Replace("«ZipPostal_Code»", zipcode);
+                        htmlString = htmlString.Replace("«Salutation_Greeting_Dear_So_and_So»:", address);
+                        htmlString = htmlString.Replace("«Weight_lbs»", );
                     }
                     else
                     {
